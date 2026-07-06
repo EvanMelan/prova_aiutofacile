@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AiutoFacile — Gli aiuti dello Stato, spiegati semplice</title>
+<title>Italia Aiuto Facile — Gli aiuti dello Stato, spiegati semplice</title>
 <meta name="description" content="NASPI, Assegno Unico, bonus bollette e affitto: scopri cosa ti spetta con parole semplici. In 8 lingue. Gratis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,10 +116,13 @@ h2{font-size:clamp(1.4rem,5.5vw,1.85rem);font-weight:800}
 .scrivendo span:nth-child(2){animation-delay:.2s}
 .scrivendo span:nth-child(3){animation-delay:.4s}
 @keyframes punti{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-.rapide{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 1.1rem .5rem;background:#fff}
-.rapide button{font:inherit;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--blu);background:#EDF2FA;border:0;border-radius:999px;padding:.55rem 1rem;min-height:44px;transition:background .15s,color .15s}
-.rapide button:hover{background:var(--blu);color:#fff}
-.chat-input{display:flex;gap:.5rem;padding:.85rem 1.1rem 1.1rem;background:#fff;border-top:1.5px solid var(--riga)}
+.opzioni{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:.4rem;align-self:stretch;margin-top:-.15rem}
+.opzioni button{white-space:normal;text-align:left;line-height:1.2;font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;color:var(--blu);background:#EDF2FA;border:0;border-radius:12px;padding:.5rem .7rem;min-height:38px;transition:background .15s,color .15s}
+[dir="rtl"] .opzioni button{text-align:right}
+.opzioni button:hover{background:var(--blu);color:#fff}
+.opzioni button.indietro{grid-column:1/-1;background:transparent;color:var(--grigio);font-weight:600;text-align:center;min-height:32px}
+.opzioni button.indietro:hover{background:#EDF2FA;color:var(--blu)}
+.chat-input{display:flex;gap:.5rem;padding:.85rem 1.1rem;background:#fff;border-top:1.5px solid var(--riga)}
 .chat-input input{flex:1;font:inherit;font-size:1rem;padding:.8rem 1rem;min-width:0;border:1.5px solid var(--riga);border-radius:999px;background:#F8FAFD}
 .chat-input input:focus{border-color:var(--blu);outline:none;background:#fff}
 .chat-input button{font:inherit;font-weight:700;color:#fff;border:0;cursor:pointer;background:linear-gradient(135deg,var(--verde),#0FB981);border-radius:999px;padding:.8rem 1.25rem;min-height:52px}
@@ -160,7 +163,7 @@ footer small{display:block;font-size:.76rem;opacity:.55;line-height:1.55}
 <div class="hero">
   <div class="blob blob-1"></div><div class="blob blob-2"></div>
   <div class="barra">
-    <a class="logo" href="#"><span class="punto"></span>AiutoFacile</a>
+    <a class="logo" href="#"><span class="punto"></span>Italia Aiuto Facile</a>
     <div class="azioni">
       <button class="mini-btn" id="cambiaLingua" aria-label="Cambia lingua / Change language">🌐 <span id="lblLingua">🇮🇹</span></button>
       <button class="mini-btn" id="fontToggle" aria-pressed="false" data-i18n="big">A+ Testo grande</button>
@@ -179,11 +182,10 @@ footer small{display:block;font-size:.76rem;opacity:.55;line-height:1.55}
       <div class="chat">
         <div class="chat-testa">
           <span class="avatar">A</span>
-          <div><b data-i18n="cName">Assistente AiutoFacile</b><small data-i18n="cDesc">Bonus e aiuti dello Stato</small></div>
+          <div><b data-i18n="cName">Assistente Italia Aiuto Facile</b><small data-i18n="cDesc">Bonus e aiuti dello Stato</small></div>
           <span class="stato" data-i18n="online">Online</span>
         </div>
         <div class="chat-log" id="log" aria-live="polite"></div>
-        <div class="rapide" id="rapide"></div>
         <form class="chat-input" id="form">
           <label class="sr-only" for="campo">Scrivi</label>
           <input id="campo" type="text" data-i18n-ph="cPh" placeholder="Scrivi qui..." autocomplete="off">
@@ -213,7 +215,7 @@ footer small{display:block;font-size:.76rem;opacity:.55;line-height:1.55}
       <a href="https://www.agenziaentrate.gov.it" rel="noopener">Agenzia delle Entrate</a>
       <a href="https://www.lavoro.gov.it" rel="noopener">Ministero del Lavoro</a>
     </div>
-    <small data-i18n="disc">AiutoFacile fornisce informazioni generali e gratuite: non è un patronato, un CAF né un consulente. Prima di fare domanda verifica sempre sul sito ufficiale o presso un CAF. © 2026 AiutoFacile.it</small>
+    <small data-i18n="disc">Italia Aiuto Facile fornisce informazioni generali e gratuite: non è un patronato, un CAF né un consulente. Prima di fare domanda verifica sempre sul sito ufficiale o presso un CAF. © 2026 ItaliaAiutoFacile.it</small>
   </div>
 </footer>
 
@@ -230,145 +232,145 @@ const BACKEND_URL = "https://aiutofacile-ponte.ivanmilan1993bz.workers.dev";
 const L = {
   it:{nome:"Italiano",bandiera:"🇮🇹",dir:"ltr",
     big:"A+ Testo grande",pill:"Gratis · Senza registrazione",
-    h1:'Ti spetta un aiuto dello Stato.<br><em>Scopri quale.</em>',
+    h1:'Ti spetta un aiuto dello Stato?<br><em>Scopri quale.</em>',
     sub:"NASPI, Assegno Unico, bonus bollette e affitto. Te lo spieghiamo con parole semplici.",
     ph:"Scrivi qui il tuo problema...",ask:"Chiedi",
     sugg:["Ho perso il lavoro","Non riesco a pagare le bollette","Ho figli piccoli","Sono straniero/a","Voglio la cittadinanza"],
     sitT:"Scegli la tua situazione",sitS:"Un tocco e ti diciamo cosa puoi chiedere.",
     cards:[["Ho perso il lavoro","NASPI e corsi gratuiti"],["Affitto e bollette","Bonus luce, gas e casa"],["Ho figli a carico","Assegno Unico e nido"],["Pensione / over 65","Carta acquisti e integrazioni"]],
-    cName:"Assistente AiutoFacile",cDesc:"Bonus e aiuti dello Stato",online:"Online",
+    cName:"Assistente Italia Aiuto Facile",cDesc:"Bonus e aiuti dello Stato",online:"Online",
     cPh:"Scrivi qui...",send:"Invia",
     note:"Le informazioni sono generali: verifica sempre sul sito ufficiale o al CAF.",
     howT:"Come funziona",
     passi:[["Racconta","Scrivi il tuo problema con parole tue."],["Scopri","Vedi cosa ti spetta e i documenti che servono."],["Fai domanda","Sul sito INPS o a un CAF vicino a te."]],
     footT:"Solo fonti ufficiali",footP:"Ogni informazione viene dai siti dello Stato e viene ricontrollata a ogni cambio di legge.",
-    disc:"AiutoFacile fornisce informazioni generali e gratuite: non è un patronato, un CAF né un consulente. Prima di fare domanda verifica sempre sul sito ufficiale o presso un CAF. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile fornisce informazioni generali e gratuite: non è un patronato, un CAF né un consulente. Prima di fare domanda verifica sempre sul sito ufficiale o presso un CAF. © 2026 ItaliaAiutoFacile.it",
     welcome:"Ciao! Dimmi con parole tue qual è il tuo problema, oppure tocca un argomento qui sotto.",
     lingua:"Lingua",errore:"Scusa, non riesco a rispondere ora. Riprova tra poco."},
 
   en:{nome:"English",bandiera:"🇬🇧",dir:"ltr",
     big:"A+ Bigger text",pill:"Free · No sign-up",
-    h1:'You may be entitled to State help.<br><em>Find out which.</em>',
+    h1:'Are you entitled to State help?<br><em>Find out which.</em>',
     sub:"Unemployment benefit, child allowance, bill and rent support. Explained in simple words.",
     ph:"Type your problem here...",ask:"Ask",
     sugg:["I lost my job","I can't pay my bills","I have young children","I'm a foreigner","I want citizenship"],
     sitT:"Choose your situation",sitS:"One tap and we'll tell you what you can claim.",
     cards:[["I lost my job","Unemployment benefit & free courses"],["Rent & bills","Electricity, gas & housing support"],["I have children","Child allowance & nursery bonus"],["Pension / over 65","Shopping card & top-ups"]],
-    cName:"AiutoFacile Assistant",cDesc:"State benefits and support",online:"Online",
+    cName:"Italia Aiuto Facile Assistant",cDesc:"State benefits and support",online:"Online",
     cPh:"Type here...",send:"Send",
     note:"This is general information: always check the official website or a CAF office.",
     howT:"How it works",
     passi:[["Tell us","Describe your problem in your own words."],["Discover","See what you can claim and which documents you need."],["Apply","On the INPS website or at a CAF office near you."]],
     footT:"Official sources only",footP:"Every piece of information comes from State websites and is checked whenever the law changes.",
-    disc:"AiutoFacile provides free general information: it is not a CAF, patronato or advisor. Always verify on the official website or at a CAF before applying. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile provides free general information: it is not a CAF, patronato or advisor. Always verify on the official website or at a CAF before applying. © 2026 ItaliaAiutoFacile.it",
     welcome:"Hello! Tell me your problem in your own words, or tap a topic below.",
     lingua:"Language",errore:"Sorry, I can't answer right now. Please try again shortly."},
 
   ar:{nome:"العربية",bandiera:"🇸🇦",dir:"rtl",
     big:"A+ نص أكبر",pill:"مجاني · بدون تسجيل",
-    h1:'قد يحق لك دعم من الدولة.<br><em>اكتشف ما هو.</em>',
+    h1:'هل يحق لك دعم من الدولة؟<br><em>اكتشف ما هو.</em>',
     sub:"إعانة البطالة، علاوة الأطفال، دعم الفواتير والإيجار. مشروح بكلمات بسيطة.",
     ph:"اكتب مشكلتك هنا...",ask:"اسأل",
     sugg:["فقدت عملي","لا أستطيع دفع الفواتير","لدي أطفال صغار","أنا أجنبي","أريد الجنسية"],
     sitT:"اختر حالتك",sitS:"انقر وسنخبرك بما يمكنك طلبه.",
     cards:[["فقدت عملي","إعانة البطالة ودورات مجانية"],["الإيجار والفواتير","دعم الكهرباء والغاز والسكن"],["لدي أطفال","علاوة الأطفال ودعم الحضانة"],["تقاعد / فوق 65","بطاقة التسوق والمساعدات"]],
-    cName:"مساعد AiutoFacile",cDesc:"مساعدات ودعم الدولة",online:"متصل",
+    cName:"مساعد Italia Aiuto Facile",cDesc:"مساعدات ودعم الدولة",online:"متصل",
     cPh:"اكتب هنا...",send:"إرسال",
     note:"هذه معلومات عامة: تحقق دائمًا من الموقع الرسمي أو مكتب CAF.",
     howT:"كيف يعمل",
     passi:[["احكِ","صف مشكلتك بكلماتك."],["اكتشف","شاهد ما يحق لك والمستندات المطلوبة."],["قدّم الطلب","على موقع INPS أو في مكتب CAF قريب منك."]],
     footT:"مصادر رسمية فقط",footP:"كل المعلومات مأخوذة من مواقع الدولة وتُراجَع عند كل تغيير في القانون.",
-    disc:"يقدم AiutoFacile معلومات عامة مجانية: ليس مكتب CAF أو باترونات أو مستشارًا. تحقق دائمًا من الموقع الرسمي أو مكتب CAF قبل التقديم. © 2026 AiutoFacile.it",
+    disc:"يقدم Italia Aiuto Facile معلومات عامة مجانية: ليس مكتب CAF أو باترونات أو مستشارًا. تحقق دائمًا من الموقع الرسمي أو مكتب CAF قبل التقديم. © 2026 ItaliaAiutoFacile.it",
     welcome:"مرحبًا! أخبرني بمشكلتك بكلماتك، أو انقر على موضوع بالأسفل.",
     lingua:"اللغة",errore:"عذرًا، لا أستطيع الرد الآن. حاول مرة أخرى بعد قليل."},
 
   fr:{nome:"Français",bandiera:"🇫🇷",dir:"ltr",
     big:"A+ Texte plus grand",pill:"Gratuit · Sans inscription",
-    h1:'Vous avez peut-être droit à une aide de l\'État.<br><em>Découvrez laquelle.</em>',
+    h1:'Avez-vous droit à une aide de l\'État ?<br><em>Découvrez laquelle.</em>',
     sub:"Allocation chômage, allocation enfants, aide au loyer et aux factures. Expliqué simplement.",
     ph:"Écrivez votre problème ici...",ask:"Demander",
     sugg:["J'ai perdu mon emploi","Je n'arrive pas à payer les factures","J'ai de jeunes enfants","Je suis étranger","Je veux la citoyenneté"],
     sitT:"Choisissez votre situation",sitS:"Un clic et on vous dit ce que vous pouvez demander.",
     cards:[["J'ai perdu mon emploi","Allocation chômage & cours gratuits"],["Loyer & factures","Aide électricité, gaz & logement"],["J'ai des enfants","Allocation enfants & crèche"],["Retraite / +65 ans","Carte d'achat & compléments"]],
-    cName:"Assistant AiutoFacile",cDesc:"Aides et prestations de l'État",online:"En ligne",
+    cName:"Assistant Italia Aiuto Facile",cDesc:"Aides et prestations de l'État",online:"En ligne",
     cPh:"Écrivez ici...",send:"Envoyer",
     note:"Informations générales : vérifiez toujours sur le site officiel ou dans un CAF.",
     howT:"Comment ça marche",
     passi:[["Racontez","Décrivez votre problème avec vos mots."],["Découvrez","Voyez vos droits et les documents nécessaires."],["Demandez","Sur le site INPS ou dans un CAF près de chez vous."]],
     footT:"Sources officielles uniquement",footP:"Chaque information vient des sites de l'État et est vérifiée à chaque changement de loi.",
-    disc:"AiutoFacile fournit des informations générales gratuites : ce n'est ni un CAF, ni un patronato, ni un conseiller. Vérifiez toujours sur le site officiel ou dans un CAF avant de faire une demande. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile fournit des informations générales gratuites : ce n'est ni un CAF, ni un patronato, ni un conseiller. Vérifiez toujours sur le site officiel ou dans un CAF avant de faire une demande. © 2026 ItaliaAiutoFacile.it",
     welcome:"Bonjour ! Dites-moi votre problème avec vos mots, ou touchez un thème ci-dessous.",
     lingua:"Langue",errore:"Désolé, je ne peux pas répondre maintenant. Réessayez bientôt."},
 
   es:{nome:"Español",bandiera:"🇪🇸",dir:"ltr",
     big:"A+ Texto más grande",pill:"Gratis · Sin registro",
-    h1:'Puede que tengas derecho a una ayuda del Estado.<br><em>Descubre cuál.</em>',
+    h1:'¿Tienes derecho a una ayuda del Estado?<br><em>Descubre cuál.</em>',
     sub:"Subsidio de desempleo, ayuda por hijos, apoyo para facturas y alquiler. Explicado fácil.",
     ph:"Escribe tu problema aquí...",ask:"Preguntar",
     sugg:["He perdido el trabajo","No puedo pagar las facturas","Tengo hijos pequeños","Soy extranjero/a","Quiero la ciudadanía"],
     sitT:"Elige tu situación",sitS:"Un toque y te decimos qué puedes pedir.",
     cards:[["He perdido el trabajo","Subsidio de paro y cursos gratis"],["Alquiler y facturas","Ayuda de luz, gas y vivienda"],["Tengo hijos","Ayuda por hijos y guardería"],["Pensión / +65","Tarjeta de compra y ayudas"]],
-    cName:"Asistente AiutoFacile",cDesc:"Ayudas y prestaciones del Estado",online:"En línea",
+    cName:"Asistente Italia Aiuto Facile",cDesc:"Ayudas y prestaciones del Estado",online:"En línea",
     cPh:"Escribe aquí...",send:"Enviar",
     note:"Información general: verifica siempre en la web oficial o en un CAF.",
     howT:"Cómo funciona",
     passi:[["Cuéntanos","Describe tu problema con tus palabras."],["Descubre","Mira a qué tienes derecho y qué documentos necesitas."],["Solicita","En la web del INPS o en un CAF cerca de ti."]],
     footT:"Solo fuentes oficiales",footP:"Toda la información viene de las webs del Estado y se revisa con cada cambio de ley.",
-    disc:"AiutoFacile ofrece información general gratuita: no es un CAF, patronato ni asesor. Verifica siempre en la web oficial o en un CAF antes de solicitar. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile ofrece información general gratuita: no es un CAF, patronato ni asesor. Verifica siempre en la web oficial o en un CAF antes de solicitar. © 2026 ItaliaAiutoFacile.it",
     welcome:"¡Hola! Dime tu problema con tus palabras, o toca un tema abajo.",
     lingua:"Idioma",errore:"Lo siento, no puedo responder ahora. Inténtalo de nuevo en un momento."},
 
   ro:{nome:"Română",bandiera:"🇷🇴",dir:"ltr",
     big:"A+ Text mai mare",pill:"Gratuit · Fără înregistrare",
-    h1:'Poate ai dreptul la un ajutor de la stat.<br><em>Află care.</em>',
+    h1:'Ai dreptul la un ajutor de la stat?<br><em>Află care.</em>',
     sub:"Ajutor de șomaj, alocație pentru copii, sprijin pentru facturi și chirie. Explicat simplu.",
     ph:"Scrie aici problema ta...",ask:"Întreabă",
     sugg:["Mi-am pierdut locul de muncă","Nu pot plăti facturile","Am copii mici","Sunt străin/ă","Vreau cetățenia"],
     sitT:"Alege situația ta",sitS:"O atingere și îți spunem ce poți cere.",
     cards:[["Mi-am pierdut jobul","Ajutor de șomaj și cursuri gratuite"],["Chirie și facturi","Sprijin curent, gaz și locuință"],["Am copii","Alocație pentru copii și creșă"],["Pensie / peste 65","Card de cumpărături și ajutoare"]],
-    cName:"Asistent AiutoFacile",cDesc:"Ajutoare și beneficii de la stat",online:"Online",
+    cName:"Asistent Italia Aiuto Facile",cDesc:"Ajutoare și beneficii de la stat",online:"Online",
     cPh:"Scrie aici...",send:"Trimite",
     note:"Informații generale: verifică mereu pe site-ul oficial sau la un CAF.",
     howT:"Cum funcționează",
     passi:[["Povestește","Descrie problema ta în cuvintele tale."],["Descoperă","Vezi la ce ai dreptul și ce acte îți trebuie."],["Depune cererea","Pe site-ul INPS sau la un CAF aproape de tine."]],
     footT:"Doar surse oficiale",footP:"Fiecare informație vine de pe site-urile statului și este verificată la fiecare schimbare de lege.",
-    disc:"AiutoFacile oferă informații generale gratuite: nu este un CAF, patronato sau consultant. Verifică mereu pe site-ul oficial sau la un CAF înainte de a depune cererea. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile oferă informații generale gratuite: nu este un CAF, patronato sau consultant. Verifică mereu pe site-ul oficial sau la un CAF înainte de a depune cererea. © 2026 ItaliaAiutoFacile.it",
     welcome:"Bună! Spune-mi problema ta în cuvintele tale sau atinge un subiect mai jos.",
     lingua:"Limbă",errore:"Îmi pare rău, nu pot răspunde acum. Încearcă din nou în scurt timp."},
 
   ru:{nome:"Русский",bandiera:"🇷🇺",dir:"ltr",
     big:"A+ Крупный текст",pill:"Бесплатно · Без регистрации",
-    h1:'Возможно, вам положена помощь от государства.<br><em>Узнайте какая.</em>',
+    h1:'Положена ли вам помощь от государства?<br><em>Узнайте какая.</em>',
     sub:"Пособие по безработице, детские выплаты, помощь со счетами и арендой. Простыми словами.",
     ph:"Напишите вашу проблему здесь...",ask:"Спросить",
     sugg:["Я потерял работу","Не могу оплатить счета","У меня маленькие дети","Я иностранец","Хочу гражданство"],
     sitT:"Выберите вашу ситуацию",sitS:"Одно касание — и мы скажем, что можно запросить.",
     cards:[["Я потерял работу","Пособие по безработице и курсы"],["Аренда и счета","Помощь: свет, газ, жильё"],["У меня дети","Детские выплаты и ясли"],["Пенсия / 65+","Карта покупок и доплаты"]],
-    cName:"Ассистент AiutoFacile",cDesc:"Государственные пособия и помощь",online:"В сети",
+    cName:"Ассистент Italia Aiuto Facile",cDesc:"Государственные пособия и помощь",online:"В сети",
     cPh:"Напишите здесь...",send:"Отправить",
     note:"Это общая информация: всегда проверяйте на официальном сайте или в CAF.",
     howT:"Как это работает",
     passi:[["Расскажите","Опишите проблему своими словами."],["Узнайте","Посмотрите, что вам положено и какие нужны документы."],["Подайте заявку","На сайте INPS или в ближайшем офисе CAF."]],
     footT:"Только официальные источники",footP:"Вся информация взята с государственных сайтов и проверяется при каждом изменении закона.",
-    disc:"AiutoFacile предоставляет бесплатную общую информацию: это не CAF, не патронат и не консультант. Всегда проверяйте на официальном сайте или в CAF перед подачей заявления. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile предоставляет бесплатную общую информацию: это не CAF, не патронат и не консультант. Всегда проверяйте на официальном сайте или в CAF перед подачей заявления. © 2026 ItaliaAiutoFacile.it",
     welcome:"Здравствуйте! Опишите вашу проблему своими словами или выберите тему ниже.",
     lingua:"Язык",errore:"Извините, сейчас не могу ответить. Попробуйте чуть позже."},
 
   uk:{nome:"Українська",bandiera:"🇺🇦",dir:"ltr",
     big:"A+ Більший текст",pill:"Безкоштовно · Без реєстрації",
-    h1:'Можливо, вам належить допомога від держави.<br><em>Дізнайтеся яка.</em>',
+    h1:'Чи належить вам допомога від держави?<br><em>Дізнайтеся яка.</em>',
     sub:"Допомога по безробіттю, виплати на дітей, підтримка з рахунками та орендою. Простими словами.",
     ph:"Напишіть вашу проблему тут...",ask:"Запитати",
     sugg:["Я втратив роботу","Не можу сплатити рахунки","У мене маленькі діти","Я іноземець","Хочу громадянство"],
     sitT:"Оберіть вашу ситуацію",sitS:"Один дотик — і ми скажемо, що можна попросити.",
     cards:[["Я втратив роботу","Допомога по безробіттю і курси"],["Оренда і рахунки","Підтримка: світло, газ, житло"],["У мене діти","Виплати на дітей і ясла"],["Пенсія / 65+","Картка покупок і доплати"]],
-    cName:"Асистент AiutoFacile",cDesc:"Державна допомога і виплати",online:"У мережі",
+    cName:"Асистент Italia Aiuto Facile",cDesc:"Державна допомога і виплати",online:"У мережі",
     cPh:"Напишіть тут...",send:"Надіслати",
     note:"Це загальна інформація: завжди перевіряйте на офіційному сайті або в CAF.",
     howT:"Як це працює",
     passi:[["Розкажіть","Опишіть вашу проблему своїми словами."],["Дізнайтеся","Подивіться, що вам належить і які потрібні документи."],["Подайте заявку","На сайті INPS або в найближчому офісі CAF."]],
     footT:"Лише офіційні джерела",footP:"Уся інформація взята з державних сайтів і перевіряється за кожної зміни закону.",
-    disc:"AiutoFacile надає безкоштовну загальну інформацію: це не CAF, не патронат і не консультант. Завжди перевіряйте на офіційному сайті або в CAF перед поданням заявки. © 2026 AiutoFacile.it",
+    disc:"Italia Aiuto Facile надає безкоштовну загальну інформацію: це не CAF, не патронат і не консультант. Завжди перевіряйте на офіційному сайті або в CAF перед поданням заявки. © 2026 ItaliaAiutoFacile.it",
     welcome:"Вітаю! Опишіть вашу проблему своїми словами або торкніться теми нижче.",
     lingua:"Мова",errore:"Вибачте, зараз не можу відповісти. Спробуйте трохи згодом."}
 };
@@ -977,7 +979,8 @@ let storico = [];   // conversazione: [{role, content}]
 const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const $ = s => document.querySelector(s);
-const log = $("#log"), rapide = $("#rapide"), campo = $("#campo"), btnInvia = $("#btnInvia");
+const log = $("#log"), campo = $("#campo"), btnInvia = $("#btnInvia");
+let gruppoOpzioni = null; // riferimento all'ultimo blocco di pulsanti mostrato in chat
 
 function salva(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function leggi(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -1005,7 +1008,7 @@ function applicaLingua(codice){
   // ricomincia la chat nella nuova lingua
   storico = [];
   log.innerHTML = "";
-  rapide.innerHTML = "";
+  gruppoOpzioni = null;
   bolla(t.welcome, "bot");
   mostraArgomenti();
   salva("lang", lang);
@@ -1027,19 +1030,32 @@ function mostraScrivendo(){
 }
 function togliScrivendo(){ const d=$("#scrivendo"); if(d) d.remove(); }
 
-/* ---- MENÙ DEGLI ARGOMENTI (in tutte le lingue) ---- */
-// Mostra i pulsanti con tutti gli argomenti principali
-function mostraArgomenti(){
-  rapide.innerHTML = "";
-  const labels = TEMI_L[lang] || TEMI_L.it;
-  Object.keys(TEMI).forEach(key=>{
+/* ---- MENÙ DEGLI ARGOMENTI (dentro la chat, in tutte le lingue) ---- */
+// Crea (o sostituisce) il blocco di pulsanti dentro la chat, subito dopo l'ultimo messaggio
+function mostraOpzioni(items){
+  if(gruppoOpzioni) gruppoOpzioni.remove();
+  const d=document.createElement('div'); d.className="opzioni";
+  items.forEach(it=>{
     const b=document.createElement('button'); b.type="button";
-    b.textContent = labels[key] || TEMI[key].label;
-    b.onclick = ()=> apriTema(key);
-    rapide.appendChild(b);
+    if(it.indietro) b.className="indietro";
+    b.textContent = it.testo;
+    b.onclick = it.onClick;
+    d.appendChild(b);
   });
+  log.appendChild(d);
+  gruppoOpzioni = d;
+  log.scrollTop = log.scrollHeight;
 }
-// Apre un argomento
+// Mostra tutti gli argomenti principali
+function mostraArgomenti(){
+  const labels = TEMI_L[lang] || TEMI_L.it;
+  const items = Object.keys(TEMI).map(key => ({
+    testo: labels[key] || TEMI[key].label,
+    onClick: () => apriTema(key)
+  }));
+  mostraOpzioni(items);
+}
+// Apre un argomento: mostra le sue domande dentro la chat
 function apriTema(key){
   const tema = TEMI[key]; if(!tema) return;
   const R = RISPOSTE[lang] || RISPOSTE.it;
@@ -1047,19 +1063,12 @@ function apriTema(key){
   const labels = TEMI_L[lang] || TEMI_L.it;
   bolla((labels[key]||tema.label).replace(/^\S+\s/,''), "utente");
   bolla(ui.pick, "bot");
-  rapide.innerHTML = "";
-  tema.q.forEach(rk=>{
+  const items = tema.q.map(rk=>{
     const r = R[rk] || RISPOSTE.it[rk];
-    const b=document.createElement('button'); b.type="button";
-    b.textContent = r.q;
-    b.onclick = ()=> rispostaPronta(rk);
-    rapide.appendChild(b);
+    return { testo: r.q, onClick: () => rispostaPronta(rk) };
   });
-  const indietro=document.createElement('button'); indietro.type="button";
-  indietro.textContent = ui.back;
-  indietro.onclick = ()=> mostraArgomenti();
-  rapide.appendChild(indietro);
-  log.scrollTop = log.scrollHeight;
+  items.push({ testo: ui.back, onClick: () => mostraArgomenti(), indietro:true });
+  mostraOpzioni(items);
 }
 // Mostra una risposta GIÀ PRONTA: nessuna chiamata a Claude, costo ZERO
 function rispostaPronta(rk){
@@ -1088,6 +1097,7 @@ async function invia(testo){
       const msg = demo[lang] || demo.en.replace("your language", L[lang].nome);
       bolla(msg, "bot");
       storico.push({role:"assistant", content:msg});
+      mostraArgomenti();
       btnInvia.disabled=false;
     }, 700);
     return;
@@ -1104,9 +1114,11 @@ async function invia(testo){
     const risposta = dati.reply || L[lang].errore;
     bolla(risposta, "bot");
     storico.push({role:"assistant", content:risposta});
+    mostraArgomenti();
   }catch(e){
     togliScrivendo();
     bolla(L[lang].errore, "bot");
+    mostraArgomenti();
   }
   btnInvia.disabled=false;
 }
